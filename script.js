@@ -9,6 +9,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Navigation highlighting based on scroll position
+  const sideLinks = document.querySelectorAll('.side-link');
+  const sections = document.querySelectorAll('section[id]');
+  
+  function highlightNavigation() {
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (window.scrollY >= (sectionTop - 200)) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    sideLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  // Add scroll listener for navigation highlighting
+  window.addEventListener('scroll', highlightNavigation);
+  
+  // Initial call to set correct active state on page load
+  highlightNavigation();
+
   // Initialize mosaic slideshow with continuous animation
   const mosaicSlideshow = document.querySelector('.mosaic-slideshow');
   if (mosaicSlideshow) {
