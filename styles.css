@@ -64,6 +64,18 @@ body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helveti
 }
 
 .materials { padding: 0; }
+.material { position: relative; }
+.material::before { 
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  width: 100vw; 
+  height: 100%; 
+  z-index: -1; 
+  background: inherit;
+}
 .material { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; max-width: var(--container); margin: 0 auto; padding: 60px var(--gutter); }
 .material:nth-child(odd) { background: #f6f7f9; }
 .material:nth-child(even) { background: #fff; }
